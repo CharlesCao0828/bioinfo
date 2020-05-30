@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t bioinfo-web .
+      - docker build -t bioinfo-web web/
       - docker tag bioinfo-web:latest 646607356140.dkr.ecr.ap-southeast-1.amazonaws.com/bioinfo-web:latest 
   post_build:
     commands:
