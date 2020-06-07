@@ -13,7 +13,7 @@ def main_page():
 def upload():
   if request.method == 'POST':
      req = AwsRequester("ap-southeast-1")
-     submit_info_dict = {"lambda_sfn_input" : 
+     submit_info_dict = {"body" : 
              {
                  "ProjectNo" : request.form.get('ProjectNo'),
                  "INPUT_BUCKET" : request.form.get('INPUT_BUCKET'),
