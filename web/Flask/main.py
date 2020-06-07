@@ -13,10 +13,17 @@ def main_page():
 def upload():
   if request.method == 'POST':
      req = AwsRequester("ap-southeast-1")
-     s3_info_dict = {"url" : request.form.get('file')}
-     s3_info_json = json.dumps(s3_info_dict)
-     req.post(APIGateway_URL, json = s3_info_json)
-     return s3_info_json
+     submit_info_dict = {"lambda_sfn_input" : 
+             {
+                 "ProjectNo" : request.form.get('ProjectNo'),
+                 "INPUT_BUCKET" : request.form.get('INPUT_BUCKET'),
+                 "INPUT_KEY" : request.form.get('INPUT_KEY'),
+                 "OUTPUT_BUCKET" : request.form.get('OUTPUT_BUCKET')
+                 }
+             }
+     req.post(APIGateway_URL, json = submit_info_dict)
+     print type(submit_info_dict)
+     return submit_info_dict
 
 if __name__ == '__main__':
     app.run(debug = True, host="0.0.0.0", port=8081)
